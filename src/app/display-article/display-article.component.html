@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="article-page">
+    <div class="card title-pane text-white">
+        <div class="card-header"><h1>{{article?.title}}</h1>
+        <div *ngIf="canModifyArticle(article.author.username)">
+        <button type = "button" style="margin:5px" (click)="deleteArticle()" class="btn btn-primary" btn-sm>
+            <i class="fa fa-trash"> Delete Article</i>
+        </button>
+        <button (click)="edit()" type = "button" icon="fa fa-trash" class="btn btn-primary" btn-sm>
+          <i class="fa fa-pencil-square-o" >
+              Edit Article</i>
+        </button>
+
+        </div>
+        </div>
+        <div class="card-body" *ngIf="canModifyArticle(article.author.username)==false">
+          <div *ngIf="article?.author.following; then followBtn else unfollowBtn"></div>
+          <ng-template #followBtn><button type="button"  class="btn btn-primary btn-sm" style="background-color:grey;" (click)="unfollowUser(article?.author.username)">UnFollow {{article?.author.username}}</button></ng-template>
+          <ng-template #unfollowBtn> <button type="button"  class="btn btn-primary btn-sm" style="background-color:#236B8E;" (click)="followUser(article?.author.username)"> Follow {{article?.author.username}}</button></ng-template>
+          &nbsp;
+          <button type="button" icon="fa fa-heart-o" class="btn btn-primary favorite btn-sm" [ngClass]="{'btnfavorited':article?.favorited}" (click)="favouriteArticle(article?.slug, article?.favorited)"> <i class="fa fa-heart-o">Favourite</i></button>
+        </div>
+      </div>
+    <br>
+    <div class="container">
+     <div class = "card art-body text-white">
+       <div class ="card-body"><h6>{{article?.body}}</h6></div>
+     </div>
+    </div>
+     <hr>
+     <div class ="container col-md-10" >
+        <textarea id ="ta" class="form-control ng-pristine ng-valid ng-touched" placeholder="Write a comment..." rows="3" #comment> </textarea>
+        <div class="card-footer"><button (click) ="postComment(comment.value)" class="btn btn-sm postBtn text-white" type="submit"> Post Comment </button></div>
+        <br>
+        <br>
+        <div *ngFor="let comment of comments" class="card" style="margin:10px">
+        <div class="card-header"> {{comment.body}} </div>
+        <div class="card-footer">{{comment.author.username}}
+          <div *ngIf="canModifyComment(comment.author.username)">
+          <button (click)="deleteComment(comment.id)" class="fa fa-trash"style="float:right"></button>
+        </div>
+      </div>
+       </div>
+      </div>
+    </div>

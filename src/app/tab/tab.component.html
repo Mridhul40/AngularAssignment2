@@ -1,0 +1,65 @@
+<div class="container">
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">Your Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#menu1">Global Feed</a>
+      </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div id="home" class="container tab-pane active"><br>
+          <div class="row">
+        <div *ngFor="let item of feedArticles">
+
+          <div class="col-md-6">
+         <div class="card" style="width :30rem">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-md-6">
+              <h4 class="card-title">{{item.title}}</h4>
+            </div>
+            <div class="col-md-6">
+              <button style="float:right" class="btn" (click)="favouriteFeedArticle(item.slug, item.favorited)" [ngClass]="{'btnSelected':item.favorited}" ><i class="fa fa-heart"></i></button>
+            </div>
+            </div>
+            <h6 class="card-text">Author: {{item.author.username}}</h6>
+            <p class="card-text"><b>Content</b>: {{item.body}}</p>
+            <a routerLink="article/{{item.slug}}" class="btn-btn-primary">More..</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="menu1" class="container tab-pane fade"><br>
+        <div class="row">
+        <div *ngFor="let item of articles ">
+        <div class="col-md-6">
+        <div class="card" style="width :30rem">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-md-6">
+              <h4 class="card-title">{{item.title}}</h4>
+            </div>
+            <div class="col-md-6">
+              <button style="float:right" class="btn" (click)="favouriteArticle(item.slug, item.favorited)" [ngClass]="{'btnSelected':item.favorited}" ><i class="fa fa-heart"></i></button>
+            </div>
+            </div>
+            <h6 class="card-text">Author: {{item.author.username}}</h6>
+            <p class="card-text"><b>Content</b>: {{item.body}}</p>
+            <a routerLink="article/{{item.slug}}" class="btn-btn-primary">More..</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  </div>

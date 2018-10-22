@@ -1,0 +1,24 @@
+
+ .favorite{
+   background-color: grey;
+ }
+
+ .title-pane{
+   background-color: #75A1D0;
+ }
+
+ .favorite:hover{
+   background-color: #3299CC;
+ }
+
+ .btnfavorited{
+   background-color: #236B8E !important;
+ }
+
+ .postBtn{
+   background-color: #236B8E;
+ }
+
+.art-body{
+  background-color: #9BC4E2;
+}
